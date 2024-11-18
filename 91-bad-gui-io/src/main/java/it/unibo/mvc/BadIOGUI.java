@@ -47,6 +47,10 @@ public class BadIOGUI {
 
         final JButton write = new JButton("Write on file");
         centerJPanel.add(write);
+
+        final JButton read = new JButton("Read the file");
+        centerJPanel.add(read);
+
         canvas.add(write, BorderLayout.CENTER);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,6 +75,16 @@ public class BadIOGUI {
                 }
             }
         });
+
+        read.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+            }
+            
+        });
     }
 
     private void display() {
@@ -92,6 +106,7 @@ public class BadIOGUI {
          * on screen. Results may vary, but it is generally the best choice.
          */
         frame.setLocationByPlatform(true);
+        frame.pack();
         /*
          * OK, ready to push the frame onscreen
          */
