@@ -42,13 +42,13 @@ public class BadIOGUI {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
 
-        final JPanel centerJPanel= new JPanel();
+        final JPanel centerJPanel = new JPanel();
         centerJPanel.setLayout(new BoxLayout(centerJPanel, BoxLayout.X_AXIS));
 
         final JButton write = new JButton("Write on file");
         centerJPanel.add(write);
 
-        final JButton read = new JButton("Read the file");
+        final JButton read = new JButton("Read from file");
         centerJPanel.add(read);
 
         canvas.add(write, BorderLayout.CENTER);
@@ -79,11 +79,17 @@ public class BadIOGUI {
         read.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+            public void actionPerformed(final ActionEvent e) {
+                try {
+                    final List<String> line = Files.readAllLines(new File(PATH).toPath());
+                    for (final String lineString : line) {
+                        System.out.println(lineString); // NOPMD: allowed as this is just an exercise
+                    }
+                } catch (IOException e2) {
+                    JOptionPane.showMessageDialog(frame, e2, "Error", JOptionPane.ERROR_MESSAGE);
+                    e2.printStackTrace(); // NOPMD: allowed as this is just an exercise
+                }
             }
-            
         });
     }
 
