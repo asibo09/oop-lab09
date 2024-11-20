@@ -1,6 +1,9 @@
 package it.unibo.mvc;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.LayoutManager;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -25,7 +28,6 @@ public final class SimpleGUI {
         final JPanel panel = new JPanel();
         final LayoutManager layout = new BorderLayout();
         panel.setLayout(layout);
-
         final JButton save = new JButton("Save");
         save.addActionListener(new ActionListener() {
             @Override
@@ -40,7 +42,6 @@ public final class SimpleGUI {
         panel.add(textArea, BorderLayout.CENTER);
         panel.add(save, BorderLayout.SOUTH);
         frame.setContentPane(panel);
-
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
@@ -51,8 +52,14 @@ public final class SimpleGUI {
         frame.setVisible(true);
     }
 
-    public static void main(String...args) {
+    /**
+     * Launch GUI.
+     * 
+     * @param args
+     */
+    public static void main(final String... args) {
         final SimpleGUI gui = new SimpleGUI(new Controller());
         gui.display();
     }
+
 }

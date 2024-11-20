@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 
 /**
  * Application controller. Performs the I/O.
@@ -30,7 +29,7 @@ public class Controller {
     }
 
     /**
-     * Set new destination file
+     * Set new destination file.
      * 
      * @param file
      *      file where to write
@@ -45,7 +44,7 @@ public class Controller {
     }
 
     /**
-     * Set new destination file
+     * Set new destination file.
      * 
      * @param destFile
      *          file where to write
@@ -55,7 +54,7 @@ public class Controller {
     }
 
     /**
-     * Saves its content on the current file
+     * Saves its content on the current file.
      * 
      * @param textString
      *          text to save
@@ -66,5 +65,5 @@ public class Controller {
         try (PrintStream out = new PrintStream(destFile, StandardCharsets.UTF_8)) {
             out.println(textString);
         }
-    }  
+    }
 }

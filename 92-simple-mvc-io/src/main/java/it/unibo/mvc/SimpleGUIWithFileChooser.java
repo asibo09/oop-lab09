@@ -2,7 +2,6 @@ package it.unibo.mvc;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,7 +43,6 @@ public final class SimpleGUIWithFileChooser {
         });
         panel.add(save, BorderLayout.SOUTH);
         panel.add(textField, BorderLayout.CENTER);
-        
         final JTextField pathFile = new JTextField(controller.getPathFile());
         pathFile.setEditable(true);
         final JButton browse = new JButton("Browse...");
@@ -61,20 +59,18 @@ public final class SimpleGUIWithFileChooser {
                         controller.setDestination(newDest);
                         pathFile.setText(newDest.getPath());
                         break;
-                    case JFileChooser.CANCEL_OPTION:     
+                    case JFileChooser.CANCEL_OPTION:
                         break;
                     default:
-                    JOptionPane.showMessageDialog(frame, result, "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(frame, result, "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }   
+            }
         });
-
         final JPanel secondPanel = new JPanel();
         secondPanel.setLayout(new BorderLayout());
         secondPanel.add(pathFile, BorderLayout.CENTER);
         secondPanel.add(browse, BorderLayout.LINE_END);
-        panel.add(secondPanel,BorderLayout.NORTH);
-
+        panel.add(secondPanel, BorderLayout.NORTH);
         frame.setContentPane(panel);
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
@@ -86,7 +82,12 @@ public final class SimpleGUIWithFileChooser {
         frame.setVisible(true);
     }
 
-    public static void main(String...args) {
+    /**
+     * Launch GUI.
+     * 
+     * @param args
+     */
+    public static void main(final String... args) {
         final SimpleGUIWithFileChooser gui = new SimpleGUIWithFileChooser(new Controller());
         gui.display();
     }
