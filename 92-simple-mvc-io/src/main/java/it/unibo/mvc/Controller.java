@@ -25,8 +25,8 @@ public class Controller {
     /**
      * @return the path of current file
      */
-    public Path getPathFile() {
-        return destFile.toPath();
+    public String getPathFile() {
+        return destFile.getPath();
     }
 
     /**
