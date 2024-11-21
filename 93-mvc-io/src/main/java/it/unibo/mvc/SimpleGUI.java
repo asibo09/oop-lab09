@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * A very simple program using a graphical interface.
  * 
@@ -24,9 +26,16 @@ public final class SimpleGUI {
     private static final String SHOW_HISTORY = "Show History";
     private final JFrame frame = new JFrame();
     private final Controller controller;
-    
+    /**
+     * builds a new {@link SimpleGUI}.
+     * @param controller the controller instance.
+     */
+    @SuppressFBWarnings(
+        value = { "EI_EXPOSE_REP2" },
+        justification = "The controller is designed to be manipulated this way."
+    )
     public SimpleGUI(final Controller controller) {
-        this.controller=controller;
+        this.controller = controller;
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         final JTextField textField = new JTextField();
@@ -48,7 +57,7 @@ public final class SimpleGUI {
             public void actionPerformed(final ActionEvent event) {
                 SimpleGUI.this.controller.setNextStringToPrint(textField.getText());
                 SimpleGUI.this.controller.printCurrentString();
-            }           
+            }
         });
         history.addActionListener(new ActionListener() {
             @Override
@@ -56,7 +65,7 @@ public final class SimpleGUI {
                 final StringBuilder builder = new StringBuilder();
                 final List<String> history = SimpleGUI.this.controller.getHistoryPrintedStrings();
                 for (final String string : history) {
-                    builder.append(string).append("\n");
+                    builder.append(string).append('\n');
                 }
                 if (!history.isEmpty()) {
                     builder.deleteCharAt(builder.length() - 1);
@@ -75,6 +84,10 @@ public final class SimpleGUI {
         frame.setVisible(true);
     }
 
+    /**
+     * @param args
+     *          ignored
+     */
     public static void main(final String... args) {
         final SimpleGUI gui = new SimpleGUI(new SimpleController());
         gui.display();

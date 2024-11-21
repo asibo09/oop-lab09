@@ -9,16 +9,16 @@ import java.util.List;
  */
 public final class SimpleController implements Controller {
 
-    private List<String> historyList = new ArrayList<>();
+    private final List<String> historyList = new ArrayList<>();
     private String nextString;
 
     @Override
-    public void setNextStringToPrint(String nextString) {
-        if (nextString==null) {
+    public void setNextStringToPrint(final String nextString) {
+        if (nextString == null) {
             throw new IllegalStateException("String can't be null");
         }
         historyList.add(nextString);
-        this.nextString=nextString;
+        this.nextString = nextString;
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class SimpleController implements Controller {
 
     @Override
     public void printCurrentString() {
-        if (nextString==null) {
+        if (nextString == null) {
             throw new IllegalStateException("No string is set");
         }
         historyList.add(nextString);
